@@ -5,8 +5,6 @@ import {execSync} from 'child_process'
 try {
   const output = execSync('haxelib list').toString()
 
-  console.log(`haxelib list output:\n${output}`)
-
   const lines = output.split('\n')
   const baseDir = execSync('pwd').toString().trim()
 
@@ -20,14 +18,24 @@ try {
         const {lib, version} = groups
         const isNumber = /\d+\.\d+\.\d+/.test(version)
         if (isNumber) {
-          console.log(`lib:${lib}, version:${version}`)
+          console.log(`lib:${lib}\nversion:${version}\n`)
         } else {
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           process.chdir(path)
           execSync(`git fetch --tags --quiet --force`)
-          const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
-          const tag = execSync(`git describe --tags`).toString()
-          console.log(`lib:${lib}, ref:${ref}, tag:${tag}`)
+          const branch = execSync(`git rev-parse --abbrev-ref HEAD`)
+            .toString()
+            .trim()
+
+          const latestTag = execSync(`git describe --tags`).toString().trim()
+          const commitSha = execSync(`git rev-parse HEAD`).toString().trim()
+          const commitDate = execSync(`git show -s --format=%ci ${commitSha}`)
+            .toString()
+            .trim()
+
+          console.log(
+            `lib: ${lib}\nbranch: ${branch}\nlatest tag: ${latestTag}\n commit sha: ${commitSha}\n commit date: ${commitDate}\n`
+          )
           process.chdir(baseDir)
         }
       }

@@ -36,7 +36,6 @@ const process = __importStar(__nccwpck_require__(282));
 const child_process_1 = __nccwpck_require__(81);
 try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
-    console.log(`haxelib list output:\n${output}`);
     const lines = output.split('\n');
     const baseDir = (0, child_process_1.execSync)('pwd').toString().trim();
     for (const line of lines) {
@@ -46,15 +45,21 @@ try {
                 const { lib, version } = groups;
                 const isNumber = /\d+\.\d+\.\d+/.test(version);
                 if (isNumber) {
-                    console.log(`lib:${lib}, version:${version}`);
+                    console.log(`lib:${lib}\nversion:${version}\n`);
                 }
                 else {
                     const path = (0, child_process_1.execSync)(`haxelib libpath ${lib}`).toString().trim();
                     process.chdir(path);
                     (0, child_process_1.execSync)(`git fetch --tags --quiet --force`);
-                    const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
-                    const tag = (0, child_process_1.execSync)(`git describe --tags`).toString();
-                    console.log(`lib:${lib}, ref:${ref}, tag:${tag}`);
+                    const branch = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`)
+                        .toString()
+                        .trim();
+                    const latestTag = (0, child_process_1.execSync)(`git describe --tags`).toString().trim();
+                    const commitSha = (0, child_process_1.execSync)(`git rev-parse HEAD`).toString().trim();
+                    const commitDate = (0, child_process_1.execSync)(`git show -s --format=%ci ${commitSha}`)
+                        .toString()
+                        .trim();
+                    console.log(`lib: ${lib}\nbranch: ${branch}\nlatest tag: ${latestTag}\n commit sha: ${commitSha}\n commit date: ${commitDate}\n`);
                     process.chdir(baseDir);
                 }
             }
