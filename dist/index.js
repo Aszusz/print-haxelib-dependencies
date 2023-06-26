@@ -54,7 +54,9 @@ try {
                     const branch = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`)
                         .toString()
                         .trim();
-                    const latestTag = (0, child_process_1.execSync)(`git describe --tags`).toString().trim();
+                    const latestTag = (0, child_process_1.execSync)(`git describe --tags --always`)
+                        .toString()
+                        .trim();
                     const commitSha = (0, child_process_1.execSync)(`git rev-parse HEAD`).toString().trim();
                     const commitDate = (0, child_process_1.execSync)(`git show -s --format=%ci ${commitSha}`)
                         .toString()
@@ -67,7 +69,7 @@ try {
     }
 }
 catch (error) {
-    core.warning('Printing haxelib dependencies failed');
+    core.error('Printing haxelib dependencies failed');
     console.log(error);
 }
 

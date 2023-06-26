@@ -27,7 +27,9 @@ try {
             .toString()
             .trim()
 
-          const latestTag = execSync(`git describe --tags`).toString().trim()
+          const latestTag = execSync(`git describe --tags --always`)
+            .toString()
+            .trim()
           const commitSha = execSync(`git rev-parse HEAD`).toString().trim()
           const commitDate = execSync(`git show -s --format=%ci ${commitSha}`)
             .toString()
@@ -42,6 +44,6 @@ try {
     }
   }
 } catch (error) {
-  core.warning('Printing haxelib dependencies failed')
+  core.error('Printing haxelib dependencies failed')
   console.log(error)
 }
