@@ -50,7 +50,7 @@ try {
                 }
                 else {
                     const path = (0, child_process_1.execSync)(`haxelib libpath ${lib}`).toString().trim();
-                    (0, child_process_1.execSync)(`cd ${path}`);
+                    process.chdir(path);
                     (0, child_process_1.execSync)(`git fetch --tags --quiet`);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
                     const tag = (0, child_process_1.execSync)(`git describe --tags --always`).toString();
