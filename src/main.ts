@@ -34,7 +34,7 @@ try {
             .trim()
 
           console.log(
-            `lib: ${lib}\nbranch: ${branch}\nlatest tag: ${latestTag}\n commit sha: ${commitSha}\n commit date: ${commitDate}\n`
+            `lib: ${lib}\nversion:git/dev\nbranch: ${branch}\nlatest tag: ${latestTag}\ncommit sha: ${commitSha}\ncommit date: ${commitDate}\n`
           )
           process.chdir(baseDir)
         }

@@ -59,7 +59,7 @@ try {
                     const commitDate = (0, child_process_1.execSync)(`git show -s --format=%ci ${commitSha}`)
                         .toString()
                         .trim();
-                    console.log(`lib: ${lib}\nbranch: ${branch}\nlatest tag: ${latestTag}\n commit sha: ${commitSha}\n commit date: ${commitDate}\n`);
+                    console.log(`lib: ${lib}\nversion:git/dev\nbranch: ${branch}\nlatest tag: ${latestTag}\ncommit sha: ${commitSha}\ncommit date: ${commitDate}\n`);
                     process.chdir(baseDir);
                 }
             }
