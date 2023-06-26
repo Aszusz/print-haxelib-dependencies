@@ -34,7 +34,7 @@ jobs:
           haxe-version: 4.2.5
 
       - name: Print haxelib path
-        run: haxelib path
+        run: haxelib config
 
       - name: Install dependencies
         run: |
