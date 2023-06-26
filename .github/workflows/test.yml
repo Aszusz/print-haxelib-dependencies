@@ -35,6 +35,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Update haxelib
+          haxelib --global update haxelib 
+
           # hxcpp
           haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git v4.3.10 --always  --quiet
           pushd .
