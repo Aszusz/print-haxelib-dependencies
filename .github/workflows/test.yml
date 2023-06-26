@@ -33,5 +33,24 @@ jobs:
         with:
           haxe-version: 4.2.5
 
+      - name: Install dependencies
+        run: |
+          # hxcpp
+          haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git v4.3.10 --always  --quiet
+          pushd .
+          cd $HXCPP-PATH
+          haxe compile.hxml
+          popd
+
+          # lime
+          git clone --recursive --depth 1 --branch 8.1.0-Dev https://github.com/openfl/lime
+          haxelib dev lime lime
+
+          # format
+          haxelib install format --quiet
+
+          # hxp
+          haxelib install hxp --quiet
+
       - name: Run my action
         uses: ./
