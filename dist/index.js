@@ -29,29 +29,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
-function run() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            core.debug('Hello World!');
+const child_process_1 = __nccwpck_require__(81);
+try {
+    const output = (0, child_process_1.execSync)('haxelib list').toString();
+    const lines = output.split('\n');
+    for (const line of lines) {
+        if (line) {
+            const groups = (_a = /^(?<lib>[\w-]+):[^[]+\[(?<version>[^\]]+)\]$/gm.exec(line)) === null || _a === void 0 ? void 0 : _a.groups;
+            if (groups) {
+                const { lib, version } = groups;
+                core.debug(`lib:${lib}, version:${version}`);
+            }
         }
-        catch (error) {
-            if (error instanceof Error)
-                core.setFailed(error.message);
-        }
-    });
+    }
 }
-run();
+catch (error) {
+    core.error('Action failed');
+    core.error(JSON.stringify(error));
+}
 
 
 /***/ }),
@@ -2748,6 +2746,14 @@ exports["default"] = _default;
 
 "use strict";
 module.exports = require("assert");
+
+/***/ }),
+
+/***/ 81:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
 
 /***/ }),
 
