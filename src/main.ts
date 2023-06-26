@@ -18,7 +18,7 @@ try {
         const {lib, version} = groups
         const isNumber = /\d+\.\d+\.\d+/.test(version)
         if (isNumber) {
-          console.log(`lib:${lib}\nversion:${version}\n`)
+          console.log(`lib:\x1b[36m${lib}\x1b[0m\nversion:${version}\n`)
         } else {
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           process.chdir(path)
