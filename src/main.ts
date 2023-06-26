@@ -15,7 +15,17 @@ try {
 
       if (groups) {
         const {lib, version} = groups
-        console.log(`lib:${lib}, version:${version}`)
+        const isNumber = /\d+\.\d+\.\d+/.test(version)
+        if (isNumber) {
+          console.log(`lib:${lib}, version:${version}`)
+        } else {
+          const path = execSync(`haxelib path ${lib}`).toString()
+          execSync(`pushd .`)
+          execSync(`cd ${path}`)
+          const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
+          console.log(`lib:${lib}, version:${ref}`)
+          execSync(`popd`)
+        }
       }
     }
   }

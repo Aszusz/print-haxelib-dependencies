@@ -42,7 +42,18 @@ try {
             const groups = (_a = /^(?<lib>[\w-]+):[^[]+\[(?<version>[^\]]+)\]$/gm.exec(line)) === null || _a === void 0 ? void 0 : _a.groups;
             if (groups) {
                 const { lib, version } = groups;
-                console.log(`lib:${lib}, version:${version}`);
+                const isNumber = /\d+\.\d+\.\d+/.test(version);
+                if (isNumber) {
+                    console.log(`lib:${lib}, version:${version}`);
+                }
+                else {
+                    const path = (0, child_process_1.execSync)(`haxelib path ${lib}`).toString();
+                    (0, child_process_1.execSync)(`pushd .`);
+                    (0, child_process_1.execSync)(`cd ${path}`);
+                    const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
+                    console.log(`lib:${lib}, version:${ref}`);
+                    (0, child_process_1.execSync)(`popd`);
+                }
             }
         }
     }
