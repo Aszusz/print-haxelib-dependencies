@@ -41,7 +41,7 @@ jobs:
           # hxcpp
           haxelib git hxcpp https://github.com/HaxeFoundation/hxcpp.git v4.3.10 --always  --quiet
           pushd .
-          cd $HXCPP-PATH
+          cd /usr/local/lib/haxe/lib/hxcpp/git/tools/hxcpp
           haxe compile.hxml
           popd
 
