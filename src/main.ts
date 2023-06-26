@@ -24,7 +24,7 @@ try {
         } else {
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           process.chdir(path)
-          execSync(`git fetch --tags --quiet`)
+          execSync(`git fetch --tags --quiet --force`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           const tag = execSync(`git describe --tags --always`).toString()
           console.log(`lib:${lib}, ref:${ref}, tag:${tag}`)
