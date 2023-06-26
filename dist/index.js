@@ -50,7 +50,7 @@ try {
                 }
                 else {
                     console.log('start');
-                    const path = (0, child_process_1.execSync)(`haxelib path ${lib}`).toString();
+                    const path = (0, child_process_1.execSync)(`haxelib libpath ${lib}`).toString();
                     console.log(`path:${path}`);
                     process.chdir(path);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
