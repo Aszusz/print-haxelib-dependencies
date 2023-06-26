@@ -4,6 +4,8 @@ import {execSync} from 'child_process'
 try {
   const output = execSync('haxelib list').toString()
 
+  core.debug(`haxelib list output:\n${output}`)
+
   const lines = output.split('\n')
   for (const line of lines) {
     if (line) {

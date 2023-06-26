@@ -35,6 +35,7 @@ const core = __importStar(__nccwpck_require__(186));
 const child_process_1 = __nccwpck_require__(81);
 try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
+    core.debug(`haxelib list output:\n${output}`);
     const lines = output.split('\n');
     for (const line of lines) {
         if (line) {
