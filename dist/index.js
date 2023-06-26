@@ -47,8 +47,7 @@ try {
     }
 }
 catch (error) {
-    core.error('Action failed');
-    core.error(JSON.stringify(error));
+    core.warning('Printing haxelib dependencies failed');
 }
 
 
