@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import * as process from 'process'
 import {execSync} from 'child_process'
 
 try {
@@ -24,10 +25,10 @@ try {
           console.log('start')
           const path = execSync(`haxelib path ${lib}`).toString()
           console.log(`path:${path}`)
-          execSync(`cd ${path}`)
+          process.chdir(path)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
-          execSync(`cd ${baseDir}`)
+          process.chdir(baseDir)
         }
       }
     }

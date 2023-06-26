@@ -32,6 +32,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
+const process = __importStar(__nccwpck_require__(282));
 const child_process_1 = __nccwpck_require__(81);
 try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
@@ -51,10 +52,10 @@ try {
                     console.log('start');
                     const path = (0, child_process_1.execSync)(`haxelib path ${lib}`).toString();
                     console.log(`path:${path}`);
-                    (0, child_process_1.execSync)(`cd ${path}`);
+                    process.chdir(path);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
                     console.log(`lib:${lib}, version:${ref}`);
-                    (0, child_process_1.execSync)(`cd ${baseDir}`);
+                    process.chdir(baseDir);
                 }
             }
         }
@@ -2831,6 +2832,14 @@ module.exports = require("os");
 
 "use strict";
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 282:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("process");
 
 /***/ }),
 
