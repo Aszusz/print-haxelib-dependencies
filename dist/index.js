@@ -51,9 +51,10 @@ try {
                 else {
                     const path = (0, child_process_1.execSync)(`haxelib libpath ${lib}`).toString().trim();
                     (0, child_process_1.execSync)(`cd ${path}`);
-                    (0, child_process_1.execSync)(`git fetch --tags`);
-                    const ref = (0, child_process_1.execSync)(`git describe --tags`).toString();
-                    console.log(`lib:${lib}, ref:${ref}`);
+                    (0, child_process_1.execSync)(`git fetch --tags --quiet`);
+                    const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
+                    const tag = (0, child_process_1.execSync)(`git describe --tags --always`).toString();
+                    console.log(`lib:${lib}, ref:${ref}, tag:${tag}`);
                     process.chdir(baseDir);
                 }
             }
