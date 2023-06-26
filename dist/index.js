@@ -39,7 +39,7 @@ try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
     console.log(`haxelib list output:\n${output}`);
     const lines = output.split('\n');
-    const baseDir = (0, child_process_1.execSync)('pwd').toString();
+    const baseDir = (0, child_process_1.execSync)('pwd').toString().trim();
     for (const line of lines) {
         if (line) {
             const groups = (_a = /^(?<lib>[\w-]+):[^[]+\[(?<version>[^\]]+)\]$/gm.exec(line)) === null || _a === void 0 ? void 0 : _a.groups;

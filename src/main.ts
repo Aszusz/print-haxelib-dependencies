@@ -9,7 +9,7 @@ try {
   console.log(`haxelib list output:\n${output}`)
 
   const lines = output.split('\n')
-  const baseDir = execSync('pwd').toString()
+  const baseDir = execSync('pwd').toString().trim()
 
   for (const line of lines) {
     if (line) {
