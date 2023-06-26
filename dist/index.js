@@ -34,6 +34,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
 const process = __importStar(__nccwpck_require__(282));
 const child_process_1 = __nccwpck_require__(81);
+const fs_1 = __nccwpck_require__(147);
 try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
     console.log(`haxelib list output:\n${output}`);
@@ -53,6 +54,7 @@ try {
                     const path = (0, child_process_1.execSync)(`haxelib libpath ${lib}`).toString().trim();
                     console.log(`path:${path}`);
                     console.log(`last char:${path.slice(-1)}`);
+                    console.log(`exists:${(0, fs_1.existsSync)(path)}`);
                     (0, child_process_1.execSync)(`cd ${path}`);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
                     console.log(`lib:${lib}, version:${ref}`);

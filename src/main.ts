@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import * as process from 'process'
 import {execSync} from 'child_process'
+import {existsSync} from 'fs'
 
 try {
   const output = execSync('haxelib list').toString()
@@ -26,6 +27,7 @@ try {
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           console.log(`path:${path}`)
           console.log(`last char:${path.slice(-1)}`)
+          console.log(`exists:${existsSync(path)}`)
           execSync(`cd ${path}`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
