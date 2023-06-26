@@ -35,4 +35,5 @@ try {
   }
 } catch (error) {
   core.warning('Printing haxelib dependencies failed')
+  console.log(error)
 }
