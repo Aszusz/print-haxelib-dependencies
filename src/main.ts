@@ -25,6 +25,7 @@ try {
           console.log('start')
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           console.log(`path:${path}`)
+          console.log(`last char:${path.slice(-1)}`)
           execSync(`cd ${path}`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
