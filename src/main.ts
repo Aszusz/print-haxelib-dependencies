@@ -4,7 +4,7 @@ import {execSync} from 'child_process'
 try {
   const output = execSync('haxelib list').toString()
 
-  core.debug(`haxelib list output:\n${output}`)
+  console.log(`haxelib list output:\n${output}`)
 
   const lines = output.split('\n')
   for (const line of lines) {
@@ -15,7 +15,7 @@ try {
 
       if (groups) {
         const {lib, version} = groups
-        core.debug(`lib:${lib}, version:${version}`)
+        console.log(`lib:${lib}, version:${version}`)
       }
     }
   }
