@@ -48,7 +48,9 @@ try {
                     console.log(`lib:${lib}, version:${version}`);
                 }
                 else {
+                    console.log('start');
                     const path = (0, child_process_1.execSync)(`haxelib path ${lib}`).toString();
+                    console.log(`path:${path}`);
                     (0, child_process_1.execSync)(`cd ${path}`);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
                     console.log(`lib:${lib}, version:${ref}`);

@@ -21,7 +21,9 @@ try {
         if (isNumber) {
           console.log(`lib:${lib}, version:${version}`)
         } else {
+          console.log('start')
           const path = execSync(`haxelib path ${lib}`).toString()
+          console.log(`path:${path}`)
           execSync(`cd ${path}`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
