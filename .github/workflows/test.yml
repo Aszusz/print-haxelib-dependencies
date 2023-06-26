@@ -49,7 +49,7 @@ jobs:
           popd
 
           # lime
-          git clone --recursive --depth 1 --branch 8.1.0-Dev https://github.com/openfl/lime
+          git clone --recursive --branch 8.1.0-Dev https://github.com/openfl/lime
           haxelib dev lime lime
 
           # format
