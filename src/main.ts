@@ -25,7 +25,7 @@ try {
           console.log('start')
           const path = execSync(`haxelib libpath ${lib}`).toString().trim()
           console.log(`path:${path}`)
-          process.chdir(path)
+          execSync(`cd ${path}`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
           process.chdir(baseDir)
