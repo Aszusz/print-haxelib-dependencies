@@ -7,6 +7,8 @@ try {
   console.log(`haxelib list output:\n${output}`)
 
   const lines = output.split('\n')
+  const baseDir = execSync('pwd').toString()
+
   for (const line of lines) {
     if (line) {
       const groups = /^(?<lib>[\w-]+):[^[]+\[(?<version>[^\]]+)\]$/gm.exec(
@@ -20,11 +22,10 @@ try {
           console.log(`lib:${lib}, version:${version}`)
         } else {
           const path = execSync(`haxelib path ${lib}`).toString()
-          execSync(`pushd .`)
           execSync(`cd ${path}`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
           console.log(`lib:${lib}, version:${ref}`)
-          execSync(`popd`)
+          execSync(`cd ${baseDir}`)
         }
       }
     }

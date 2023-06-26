@@ -37,6 +37,7 @@ try {
     const output = (0, child_process_1.execSync)('haxelib list').toString();
     console.log(`haxelib list output:\n${output}`);
     const lines = output.split('\n');
+    const baseDir = (0, child_process_1.execSync)('pwd').toString();
     for (const line of lines) {
         if (line) {
             const groups = (_a = /^(?<lib>[\w-]+):[^[]+\[(?<version>[^\]]+)\]$/gm.exec(line)) === null || _a === void 0 ? void 0 : _a.groups;
@@ -48,11 +49,10 @@ try {
                 }
                 else {
                     const path = (0, child_process_1.execSync)(`haxelib path ${lib}`).toString();
-                    (0, child_process_1.execSync)(`pushd .`);
                     (0, child_process_1.execSync)(`cd ${path}`);
                     const ref = (0, child_process_1.execSync)(`git rev-parse --abbrev-ref HEAD`).toString();
                     console.log(`lib:${lib}, version:${ref}`);
-                    (0, child_process_1.execSync)(`popd`);
+                    (0, child_process_1.execSync)(`cd ${baseDir}`);
                 }
             }
         }
