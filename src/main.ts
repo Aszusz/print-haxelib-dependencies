@@ -26,7 +26,7 @@ try {
           process.chdir(path)
           execSync(`git fetch --tags --quiet --force`)
           const ref = execSync(`git rev-parse --abbrev-ref HEAD`).toString()
-          const tag = execSync(`git describe --tags --always`).toString()
+          const tag = execSync(`git describe --tags`).toString()
           console.log(`lib:${lib}, ref:${ref}, tag:${tag}`)
           process.chdir(baseDir)
         }
